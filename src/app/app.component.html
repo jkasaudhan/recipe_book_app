@@ -1,2 +1,17 @@
-<app-header></app-header>
-<app-recipes></app-recipes>
+<app-header (onNavigationChanged)="changeState($event)"></app-header>
+<div class="container">
+<div class="row"  *ngIf="currentState === 'recipe'">
+    <div class="col-md-5 ">
+        <app-recipes ></app-recipes>
+    </div>
+    <div class="col-md-7 ">
+    <app-recipe-detail></app-recipe-detail>
+    </div>
+</div>
+<div class="row"  *ngIf="currentState !== 'recipe'">
+    <div class="col-xs-12">
+        <app-shopping-list></app-shopping-list>
+    </div>
+</div>
+</div>
+

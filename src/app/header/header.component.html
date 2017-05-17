@@ -11,8 +11,8 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Recipe</a></li>
-              <li><a href="#">Shopping List</a></li>
+              <li (click)="onNavigationClicked('recipe')" class="active"><a href="#">Recipe</a></li>
+              <li (click)="onNavigationClicked('shopping-list')"><a href="#">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
