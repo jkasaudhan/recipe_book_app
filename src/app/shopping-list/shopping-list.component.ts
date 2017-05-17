@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild, ElementRef } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 
 @Component({
@@ -7,15 +7,33 @@ import { Ingredient } from '../shared/ingredient.model';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  ingredients: Ingredient[] = [
-    new Ingredient("Potatoes", 3),
-    new Ingredient("Tomatoes", 3),
-    new Ingredient("Eggs", 3)
-  ];
+  @Input()
+  ingredeints: Ingredient[];
+  
+  @Output()
+  onIngredientAdded = new EventEmitter<Ingredient>();
+  
+  @Output()
+  onReset = new EventEmitter<void>();
+  
+  @ViewChild('inputIngredientName') inputIngredientName: ElementRef;
+  
+  @ViewChild('inputIngredientAmt') inputIngredientAmt: ElementRef;
   
   constructor() { }
 
   ngOnInit() {
+  this.ingredeints = this.ingredeints;
   }
-
+  
+  addIngredient() {
+      const name = this.inputIngredientName.nativeElement.value;
+      const amount = this.inputIngredientAmt.nativeElement.value;
+      const item = new Ingredient(name, amount);
+      this.onIngredientAdded.emit(item);
+  }
+  
+  resetList() {
+    this.onReset.emit();
+  }
 }

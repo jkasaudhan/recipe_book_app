@@ -11,13 +11,18 @@
     <div class="col-md-7 ">
     <app-recipe-detail [recipe]="selectedItem" *ngIf="selectedItem; else defaultInfo"></app-recipe-detail>
         <ng-template #defaultInfo>
-            <p>Please select at least one recipe.</p>
+    
+            <h2>Please select at least one recipe.</h2>
         </ng-template>
     </div>
 </div>
 <div class="row"  *ngIf="currentState !== 'recipe'">
     <div class="col-xs-12">
-        <app-shopping-list></app-shopping-list>
+        <app-shopping-list 
+                           (onIngredientAdded)="addIngredient($event)"
+                           [ingredeints]="ingredeints"
+                           (onReset)="resetShoppingList()"
+        ></app-shopping-list>
     </div>
 </div>
 </div>
